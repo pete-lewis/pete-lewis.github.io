@@ -37,7 +37,7 @@
 			width: 3em;
 		}
 		
-		input, button {
+		input, select, button {
 			padding: 0.4em;
 			font-size: 1.25em;
 		}
@@ -78,8 +78,8 @@
 	</style>
 </head>
 <body>
-	<h1>dosage v1.1</h1>
-	<h2>updated 3/16/2019</h2>
+	<h1>dosage calc v1.2</h1>
+	<h3>updated 3/16/2019</h3>
 	
 	
 	<div class="form-item-container">
@@ -88,8 +88,16 @@
 	</div>
 	
 	<div class="form-item-container">
-		<label for="food-grams">Food Grams</label>
+		<label for="food-grams">Carbohydrate Grams</label>
 		<input type="number" id="food-grams" required />
+	</div>
+
+	<div class="form-item-container">
+		<label for="time-profile">Time</label>
+		<select id="time-profile">
+			<option value="day">Day</option>
+			<option value="overnight">Overnight</option>
+		</select>
 	</div>
 	
 	<div class="form-item-container">
@@ -106,21 +114,39 @@
 				<label for="target-bg">Target BG</label>
 				<input type="number" id="target-bg" value="120" required />
 			</div>
-			
-			<div class="form-item-container">
-				<label for="correction-ratio">Correction Ratio</label>
-				<input type="number" id="correction-ratio" value="100" required />
+
+			<div class="profile-container">
+				<h2>Day</h2>
+				
+				<div class="form-item-container">
+					<label for="correction-ratio-day">Correction Ratio</label>
+					<input type="number" id="correction-ratio-day" value="100" required />
+				</div>
+				
+				<div class="form-item-container">
+					<label for="grams-per-unit-day">Grams Per Unit</label>
+					<input type="number" id="grams-per-unit-day" value="30" required />
+				</div>
 			</div>
 			
-			<div class="form-item-container">
-				<label for="grams-per-unit">Grams Per Unit</label>
-				<input type="number" id="grams-per-unit" value="30" required />
+			<div class="profile-container">
+				<h2>Overnight</h2>
+				
+				<div class="form-item-container">
+					<label for="correction-ratio-overnight">Correction Ratio</label>
+					<input type="number" id="correction-ratio-overnight" value="110" required />
+				</div>
+				
+				<div class="form-item-container">
+					<label for="grams-per-unit-overnight">Grams Per Unit</label>
+					<input type="number" id="grams-per-unit-overnight" value="35" required />
+				</div>
 			</div>
-		
+
 			<div class="form-item-container">
 				Formula:<br>
-				(( bloodGlucode - targetBloodGlucose ) / correctionRatio)<br>
-				+ (foodGrams / gramsPerUnit)
+				(( bloodGlucose - targetBloodGlucose ) / correctionRatio)<br>
+				+ (carbGrams / gramsPerUnit)
 			</div>
 		</div>
 		
@@ -143,6 +169,12 @@
 			var el = document.getElementById(id);
 			return parseFloat(trim(el.value)) || 0;
 		};
+
+		var getSelectValue = function(id){
+			var el = document.getElementById(id),
+				index = Math.max(el.selectedIndex, 0);
+			return el.options[index].value;
+		};
 		
 		var trim = function(s){
 			if ( typeof s === "string" ) {
@@ -154,9 +186,10 @@
 		var calcButtonClick = function(e){
 			var bg = getValue("bg"),
 				targetBg = getValue("target-bg"),
-				correctionRatio = getValue("correction-ratio"), 
+				timeProfile = getSelectValue("time-profile"),
+				correctionRatio = getValue("correction-ratio-" + timeProfile), 
 				foodGrams = getValue("food-grams"), 
-				gramsPerUnit = getValue("grams-per-unit"), 
+				gramsPerUnit = getValue("grams-per-unit-" + timeProfile), 
 				resultElement = document.getElementById("result"),
 				warningElement = document.getElementById("warning");
 			
@@ -199,6 +232,12 @@
 				
 			document.getElementById("toggle-variables")
 				.addEventListener("click", toggleVariables);
+
+			// if after 7pm, default to "Overnight" time profile
+			if ((new Date()).getHours() >= 19) {
+				document.getElementById("time-profile").selectedIndex = 1;
+			}
+
 		});
 	</script>
 </body>
