@@ -201,11 +201,11 @@
 			
 			if (bg < 40 || bg > 500)
 				warnings.push("Current BG " + bg);
-			if (targetBg < 100 || targetBg > 120)
+			if (targetBg < 80 || targetBg > 150)
 				warnings.push("Target BG " + targetBg);
 			if (correctionRatio < 100 || correctionRatio > 150)
 				warnings.push("Correction Ratio " + correctionRatio);
-			if (foodGrams < 11 || foodGrams > 100)
+			if (foodGrams < 0 || foodGrams > 110)
 				warnings.push("Food Grams " + foodGrams);
 			if (gramsPerUnit < 10 || gramsPerUnit > 100)
 				warnings.push("Grams Per Unit " + gramsPerUnit);
