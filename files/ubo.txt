@@ -1,0 +1,16 @@
+||google-analytics.com^$important,third-party
+||googletagmanager.com^$important,third-party
+||googleadservices.com^$important,third-party
+||doubleclick.net^$important,third-party
+||facebook.com^$important,third-party
+||facebook.net^$important,third-party,domain=~facebook.com
+||fbcdn.net^$important,third-party,domain=~facebook.com
+||fbcdn.com^$important,third-party,domain=~facebook.com
+||fb.me^$important,third-party,domain=~facebook.com
+||fb.com^$important,third-party,domain=~facebook.com
+||instagram.com^$important,third-party,domain=~instagram.com
+||graph.instagram.com^$important,third-party,domain=~graph.instagram.com
+||platform.twitter.com^$important,third-party
+||analytics.twitter.com^$important,third-party
+||syndication.twitter.com^$important,third-party
+||linkedin.com^$important,third-party
