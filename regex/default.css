@@ -1,0 +1,21 @@
+body, 
+body * {
+    font-family: sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    max-width: 100%;
+}
+
+label {
+    display: block;
+}
+
+.section {
+    margin-bottom: 1em;
+}
+
+textarea {
+    min-width: 400px;
+}
