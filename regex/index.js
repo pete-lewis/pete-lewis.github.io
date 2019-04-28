@@ -2,11 +2,11 @@
 
 const btnExecHandler = function(e){
     let expression = document.getElementById("expression").value;
-    let text = document.getElementById("data").value;
+    let data = document.getElementById("data").value;
     let flags = getFlags();
 
     let regex = new RegExp(expression, flags);
-    let matches = text.match(regex);
+    let matches = data.match(regex);
 
     displayMatches(matches);
 };
