@@ -14,3 +14,5 @@
 ||analytics.twitter.com^$important,third-party
 ||syndication.twitter.com^$important,third-party
 ||linkedin.com^$important,third-party
+||geolocation.onetrust.com^$important,third-party
+||cdn.cookielay.org^$important,third-party
