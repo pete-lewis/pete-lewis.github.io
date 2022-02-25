@@ -16,3 +16,4 @@
 ||linkedin.com^$important,third-party
 ||geolocation.onetrust.com^$important,third-party
 ||cdn.cookielay.org^$important,third-party
+reuters.com##nav.toolbar__container___FrSfUX
